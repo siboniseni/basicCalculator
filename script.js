@@ -37,10 +37,17 @@ function performOperation(operatorOption, firstNumber, secondNumber) {
 const button = document.querySelectorAll('.button');
 const display = document.getElementById('display');
 let storedNumber = '';
+const operators = ['+', '-', '*', '/'];
 
 // Add click event listeners to number buttons
 button.forEach((number) => {
     number.addEventListener('click', function() {
+        // Check if the last character is an operator
+        if (operators.includes(storedNumber[storedNumber.length - 1]) && operators.includes(number.value)) {
+            // Don't append an operator if the previous character was also an operator
+            return;
+        }
+        
         storedNumber += number.value;
         display.textContent = storedNumber;
     });
@@ -54,7 +61,6 @@ function clearDisplay() {
 
 // Function to perform calculations
 function calculate() {
-    const operators = ['+', '-', '*', '/'];
     let currentNumber = '';
     let result = 0;
     let operator = '+';
@@ -64,6 +70,11 @@ function calculate() {
         const char = storedNumber[i];
 
         if (operators.includes(char)) {
+            if (operator === '/' && currentNumber === '0') {
+                display.textContent = 'Error: Division by zero';
+                return;
+            }
+            
             result = performOperation(operator, result, parseFloat(currentNumber));
             currentNumber = '';
             operator = char;
