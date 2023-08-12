@@ -11,7 +11,7 @@ A sleek and user-friendly web-based calculator that allows users to perform basi
 
 ## Demo
 
-Check out the live demo [here](https://your-demo-url.com).
+Check out the live demo [here]([https://your-demo-url.com](https://siboniseni.github.io/basicCalculator/)).
 
 ## Getting Started
 
